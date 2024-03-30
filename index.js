@@ -69,7 +69,6 @@ app.get('/api/committe_members', (req, res) => {
     });
 });
 
-<<<<<<< Updated upstream
 // Get the Alumini members information
 app.get('/api/alumni_members', (req, res) => {
 
@@ -84,7 +83,7 @@ app.get('/api/alumni_members', (req, res) => {
     });
 });
 
-=======
+
 // To update the record status in the property for the admin page
 app.post("/api/update_committee_member",(req,res) =>{
     const name = req.body.name;
@@ -104,7 +103,6 @@ app.post("/api/update_committee_member",(req,res) =>{
         }
     });
 });
->>>>>>> Stashed changes
 
 // To upload the request to list property in the website
 // app.post("/api/update_approval_property_list",(req,res) =>{
