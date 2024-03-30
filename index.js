@@ -57,12 +57,11 @@ app.post('/api/admin_login', (req, res) => {
 });
 
 // Get the Committe members information
-app.post('/api/committe_members', (req, res) => {
-
-    const sql = "select m_name, m_email,m_level, m_role from members;";
-
+app.get('/api/committe_members', (req, res) => {
+    let sql = "select m_name, m_email,m_level, m_role from members;";
     db.query(sql, (err, result) => {
         if (err) {
+
             res.status(500).send({ error: err.message });
         } else {
             res.send(result);
@@ -70,6 +69,7 @@ app.post('/api/committe_members', (req, res) => {
     });
 });
 
+<<<<<<< Updated upstream
 // Get the Alumini members information
 app.get('/api/alumni_members', (req, res) => {
 
@@ -84,6 +84,27 @@ app.get('/api/alumni_members', (req, res) => {
     });
 });
 
+=======
+// To update the record status in the property for the admin page
+app.post("/api/update_committee_member",(req,res) =>{
+    const name = req.body.name;
+    const email = req.body.email;
+    const level = req.body.level;
+    const old_email = req.body.old_email;
+    const sql_query = "UPDATE members SET m_name = ?, m_email = ?, m_level = ? WHERE m_email = ?";
+    const values = [name, email, level, old_email];
+    db.query(sql_query, values, (err, result) => {
+        console.log(sql_query,values);
+        if(err) {
+            console.log("Error");
+            res.status(500).send({ error: err.message });
+        } else {
+            console.log("No Error");
+            res.send(null);
+        }
+    });
+});
+>>>>>>> Stashed changes
 
 // To upload the request to list property in the website
 // app.post("/api/update_approval_property_list",(req,res) =>{
