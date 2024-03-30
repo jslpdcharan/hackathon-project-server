@@ -1,5 +1,5 @@
-create database hackathondb;
-use hackathondb;
+create database hackathondb
+use hackathondb
 # Members table DDL
 CREATE TABLE members (
 m_name VARCHAR(255) NOT NULL,
@@ -14,12 +14,48 @@ INSERT INTO members (m_name, m_email, m_level, m_role) VALUES
 ('Kavya Rangaswamy', 'rangaswamy@okstate.edu', 'Graduate', 'Vice President'),
 ('Ramana Peram', 'peram@okstate.edu', 'Graduate', 'Treasurer'),
 ('Chrisantus Eze', 'eze@okstate.edu', 'PG', 'Secretary');
-
 # Roles table DDL
 CREATE TABLE roles (
-m_role ENUM('President', 'Vice President', 'Treasurer', 'Secretary') NOT NULL,
-m_responsibility VARCHAR(255) NOT NULL
+  m_role ENUM('President', 'Vice President', 'Treasurer', 'Secretary') NOT NULL,
+  m_responsibility VARCHAR(3000) NOT NULL
 );
+
+INSERT INTO roles (m_role, m_responsibility) VALUES
+('President', 'Serve as the official spokesperson and primary point of contact of the CS-GSA.'),
+('President', 'Represent student interests in all communication with the CS department.'),
+('President', 'Foster a sense of community and sociability among CS students for their well-being.'),
+('President', 'Call and chair all CS-GSA meetings.'),
+('President', 'Carry out any additional roles assigned by the CS-GSA.'),
+('President', 'Send out meeting agendas to all members at least 48 hours prior to each meeting.'),
+('President', 'Send out meeting reminders to all representatives at least 48 hours before each meeting.'),
+('President', 'Arrange venues for all CS-GSA meetings.'),
+('President', 'Oversee the election and appointment of representatives to committees.'),
+('President', 'Attend faculty meetings to stay informed of graduate student-related concerns.'),
+('President', 'Act as a liaison between CS-GSA and CS graduate committee in discussions on graduate curriculum changes, new courses, and CS graduate program development.'),
+('President', 'Provide reports on the CS-GSA\'s activities when requested (e.g., CS-GSA meetings).'),
+('President', 'Fostering ongoing relationships with alumni to benefit the current students and alumni.'),
+
+('Vice President', 'Preside in the absence of the President.'),
+('Vice President', 'Perform any other duties as designated by the CS-GSA.'),
+('Vice President', 'In case of the permanent absence of the President before the end of the term, the Vice-President shall assume the position of President for the remainder of the former President\'s term. Appointment by the President will then fill the Vice-President\'s position.'),
+('Vice President', 'Assist the President with constructing the agenda for all CS-GSA meetings.'),
+('Vice President', 'Record and maintain the minutes and attendance records from all CS-GSA meetings.'),
+
+('Treasurer', 'Be responsible for the maintenance of all financial records.'),
+('Treasurer', 'Present the proposed budget for the next year to the CS-GSA.'),
+('Treasurer', 'Prior to each meeting, obtain the account balance and present it to CS-GSA.'),
+('Treasurer', 'Collect and process all receipts and invoices that need processing.'),
+('Treasurer', 'Fill out one disbursement voucher for each invoice and submit as described above. Retain yellow copy for Treasurer\'s records.'),
+('Treasurer', 'Categorize and subtract all expenses.'),
+('Treasurer', 'Monitor all expenses and ensure that all are within budgeted categories and have obtained pre-approval.'),
+
+('Secretary', 'Serve as the recording officer of the CS-GSA and the custodian of its records including placing all relevant records in the binder in the graduate student lounge.'),
+('Secretary', 'Send out proper notices of all open meetings.'),
+('Secretary', 'Conduct the correspondence of the CS-GSA except as otherwise provided.'),
+('Secretary', 'Record representative attendance at all regularly scheduled meetings.'),
+('Secretary', 'Within one week after every meeting, post the minutes via the CS-GSA group email.'),
+('Secretary', 'Distribute any information to representatives via e-mail list services or in writing via campus mail.'),
+('Secretary', 'Record minutes at all regularly scheduled CS-GSA meetings.');
 
 # Events table DDL
 CREATE TABLE events (
