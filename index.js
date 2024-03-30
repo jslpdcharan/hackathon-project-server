@@ -4,11 +4,12 @@ const cors =require("cors");
 const bodyParser = require('body-parser')
 const mysql = require('mysql2');
 
-// database credentials
+// Change database credentials
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "admin",
+    password: "Vineeth@2002",
+    port: "3306",
     database: "hackathondb",
 });
 app.use(cors());
