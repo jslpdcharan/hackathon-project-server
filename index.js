@@ -16,6 +16,60 @@ app.use(cors());
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
+// To fetch the events in the database
+app.get('/api/get_events', (req, res) => {
+    let sql = "SELECT e_name, e_time, e_location, e_description, e_date, e_contact_details FROM events";
+    const { date } = req.query;
+
+    if (date) {
+        sql += " WHERE e_date = ?";
+    }
+
+    sql += " ORDER BY e_date, e_time;";
+    console.log(sql);
+    db.query(sql, [date], (err, result) => {
+        if (err) {
+            res.status(500).send({ error: err.message });
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+// Admin page username and password authentication
+app.post('/api/admin_login', (req, res) => {
+    const { username, password } = req.body;
+
+    const sql = "SELECT username, password FROM admin WHERE username = ? AND password = ?";
+
+    db.query(sql, [username, password], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send({ success: false, message: 'An error occurred. Please try again later.' });
+        }
+
+        if (result && result.length > 0) {
+            return res.send({ success: true });
+        } else {
+            return res.send({ success: false });
+        }
+    });
+});
+
+// Get the Committe members information
+app.post('/api/committe_members', (req, res) => {
+
+    const sql = "select m_name, m_email,m_level, m_role from members;";
+
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.status(500).send({ error: err.message });
+        } else {
+            res.send(result);
+        }
+    });
+});
+
 
 // To upload the request to list property in the website
 // app.post("/api/update_approval_property_list",(req,res) =>{
