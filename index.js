@@ -8,7 +8,7 @@ const mysql = require('mysql2');
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Vineeth@2002",
+    password: "admin",
     port: "3306",
     database: "hackathondb",
 });
@@ -60,6 +60,20 @@ app.post('/api/admin_login', (req, res) => {
 app.post('/api/committe_members', (req, res) => {
 
     const sql = "select m_name, m_email,m_level, m_role from members;";
+
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.status(500).send({ error: err.message });
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+// Get the Alumini members information
+app.get('/api/alumni_members', (req, res) => {
+
+    const sql = "select a_full_name,a_year_of_enrollment  from alumini order by a_year_of_enrollment;";
 
     db.query(sql, (err, result) => {
         if (err) {
